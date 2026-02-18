@@ -76,7 +76,7 @@ nav{
     display: flex;
     gap: 16px;
     flex-direction: column;
-    min-width: 25%;
+    min-width: 31%;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .column .heading{
@@ -111,4 +111,74 @@ nav{
 .drop-hover{
     border: 2px dashed var(--font-color);
     scale: 1.04;
+}
+
+
+
+
+
+
+.write-task{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.activeWriteTask{
+    display: flex;
+}
+.inp-container{
+    background-color: rgb(18, 18, 18);
+    border-radius: var(--l-radius);
+    padding: var(--xx-pad);
+    display: flex;
+    flex-direction: column;
+    z-index: 9;
+    gap: var(--x-pad);
+}
+.inp-container > input{
+    padding: var(--l-pad);
+    border-radius: var(--s-radius);
+    border: none;
+    outline: none;
+    background-color: var(--font-color);
+}
+.inp-container > input::placeholder{
+    color: rgba(0, 0, 0, 0.605);
+}
+.inp-container > textarea{
+    padding: var(--l-pad);
+    border-radius: var(--s-radius);
+    border: none;
+    outline: none;
+    background-color: var(--font-color);
+}
+.inp-container > textarea::placeholder{
+    color: rgba(0, 0, 0, 0.605);
+}
+.inp-container > button{
+    border: none;
+    outline: none;
+    border-radius: var(--s-radius);
+    padding: var(--s-pad) var(--l-pad);
+    cursor: pointer;
+    color: var(--font-color);
+    background-color: var(--bg-buutton);
+    font-size: 0.9rem;
+    width: 50%;
+    align-self: center;
+}
+.inp-container > button:hover{
+    opacity: 0.9;
+}
+.bg-blur{
+    background-color: rgba(0, 0, 0, 0.224);
+    backdrop-filter: blur(5px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
