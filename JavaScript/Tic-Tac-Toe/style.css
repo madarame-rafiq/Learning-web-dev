@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    /* padding */
+    --s-padd: 5px;
+    --l-padd: 10px;
+    --x-padd: 15px;
+    --xl-padd: 20px;
+    --xxl-padd: 25px;
+    --xxxl-padd: 30px;
+
+    /* background Color */
+    --main-bg:      #363636;
+    --board-bg: #232323;
+    --btn-bg: crimson;
+}
+html,
+body{
+    height:100vh;
+    width:100vw;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--main-bg);
+}
+.board{
+    padding: var(--xxl-padd) var(--xxl-padd);
+    height: 55vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--board-bg);
+    border-radius: var(--x-padd);
+}
+.row{
+    flex: 1;
+    display: flex;
+    gap: 20px;
+}
+.col{
+    flex: 1;
+    background-color: rgb(21, 21, 21);
+    border-radius: var(--l-padd);
+    transition: 0.3s all ease;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colhover{
+    scale: 1.1;
+    opacity: 0.95;
+    border: 1px dotted white;
+}
+
+.choices{
+    background-color: var(--board-bg);
+    padding: var(--s-padd) var(--x-padd);
+    border-radius: var(--x-padd);
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+.choice{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--l-padd) var(--l-padd);
+    font-size: 3.4rem;
+    font-weight: bolder;
+    background-color: transparent;
+    cursor: grab;
+}
+
+#x{
+    color: red;
+}
+#o{
+    color: rgb(0, 153, 242);
+}
+
+
+.winner-screen{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+.winner{
+    background-color: var(--board-bg);
+    padding: var(--xxxl-padd) var(--xxxl-padd);
+    border-radius: var(--xl-padd);
+    z-index: 99;
+}
+.winner > h1{
+    font-size: 6rem;
+    color: rgb(210, 206, 206);
+}
+.winner > h3{
+    font-size: 3rem;
+    color: rgb(127, 127, 127);
+    text-transform: uppercase;
+}
+.winner-bg{
+    height: 100%;
+    width: 100%;
+    background-color: #00000054;
+    position: fixed;
+}
+.winner > button{
+    border: none;
+    outline: none;
+    border-radius: var(--s-padd);
+    background-color: var(--btn-bg);
+    padding: var(--l-padd) var(--x-padd);
+    margin-top: 30px;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.winner > button:hover{
+    opacity: 0.7;
+}
+
+.toggleWinnerScreen{
+    display: flex;
+}
