@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, 
+body{
+    height: 100vh;
+    width: 100vw;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root{
+
+/* Background colors */
+    --red-bg: rgb(211, 128, 33);
+    --blue-bg: rgb(41, 151, 210);
+    --home-bg: blanchedalmond;
+    --board-bg: #333;
+    
+    
+/* Score colors */
+    --left-score: rgb(4, 179, 243);
+    --right-score: rgb(255, 98, 0);
+}
+
+nav{
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 27px;
+    background-color: rgba(0, 0, 0, 0.082);
+}
+nav > h2{
+    font-weight: 500;
+    color: aliceblue;
+}
+nav > a{
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+}
+nav > a:hover{
+    transform: scale(1.2);
+
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    background-color: var(--home-bg);
+}
+/* ----Change the background color on the basis of whose turn it is ----*/
+.main-red-background-color{
+    background-color: var(--red-bg);
+}
+.main-blue-background-color{
+    background-color: var(--blue-bg);
+}
+
+
+.container{
+    height: calc(100% - 40px);
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 1.9rem;
+}
+.container > .left{
+    /* background-color: red; */
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--left-score);
+}
+
+.container > .game-board{
+    background-color: var(--board-bg);
+    width: 50%;
+    border-radius: 8px;
+}
+
+.container > .right{
+    /* background-color: rgb(195, 0, 255); */
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--right-score);
+}
+
+
+
+
+
+.game-board{
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.row{
+    display: flex;
+    height: 20%;
+    gap: 10px;
+}
+.card{
+    height: 100%;
+    width: 25%;
+    background-color: red;
+    transition: all 0.8s ease;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
