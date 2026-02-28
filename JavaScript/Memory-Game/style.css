@@ -106,15 +106,14 @@ main{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
 }
-.row{
-    display: flex;
-    height: 20%;
-    gap: 10px;
-}
+
 .card{
-    height: 100%;
-    width: 25%;
+    position: absolute;
+    height: 130px;
+    width: 165px;
+    border: solid black 2px;
     background-color: red;
     transition: all 0.8s ease;
     border-radius: 12px;
