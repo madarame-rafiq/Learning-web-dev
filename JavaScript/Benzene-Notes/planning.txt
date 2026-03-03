@@ -1,0 +1,35 @@
+Chat gpt
+
+🧠 1️⃣ Advanced Kanban Board (LocalStorage Powered)
+
+Inspired by Trello
+
+Features:
+
+Create boards
+
+Add lists
+
+Drag & drop cards
+
+Edit / delete tasks
+
+Save everything in localStorage
+
+Dark mode toggle
+
+Keyboard shortcuts
+
+What you master:
+
+Drag & Drop API
+
+State management
+
+DOM manipulation
+
+Persistent storage
+
+Clean UI architecture
+
+This is not small. This is real engineering.
