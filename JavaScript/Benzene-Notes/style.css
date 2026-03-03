@@ -8,6 +8,7 @@
     /* Background Color */
     --bg-light: rgb(232, 241, 244);
     --create-btn-bg: rgb(0, 157, 255);
+    --inbox-board-bg: #bab9b96a;
 
 
     /* Color */
@@ -134,4 +135,124 @@ option {
 }
 .show-new-board-maker{
     display: flex;
+}
+
+
+
+
+/* ------main----- */
+main{
+    /* background-color: rgb(98, 0, 0); */
+    padding: var(--xxl-size) var(--xxl-size);
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    height: 91.2%;
+}
+
+.inbox{
+    background-color: var(--inbox-board-bg);
+    height: 100%;
+    width: 25%;    
+    padding: var(--x-size) var(--x-size);
+    border-radius: var(--x-size);
+}
+
+.board{
+    background-color: var(--inbox-board-bg);
+    height: 100%;
+    width: 75%;
+    border-radius: var(--x-size);
+    padding: var(--x-size) var(--x-size);
+}
+
+.heading{
+    border-bottom: solid 2px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--x-size);
+}
+.edit-btn{
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    padding: var(--x-size) var(--l-size);
+    /* width: 10px; */
+}
+
+
+
+
+/* ------create new task------ */
+.new-task{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(196, 198, 196);
+    border-radius: var(--x-size);
+    justify-content: center;
+    gap: 5px;
+    padding: var(--xxl-size) var(--x-size);
+    margin-top: 20px;
+}
+.input-new-task{
+    width: 80%;
+    height: 31px;
+    outline: none;
+    border: none;
+    border-radius: var(--s-size);
+    padding: var(--x-size) var(--s-size);
+}
+.create-task-btn{
+    color: white;
+    font-size: 1rem;
+    padding: var(--s-size) var(--l-size);
+    border: none;
+    border-radius: 3px;
+    background-color: var(--create-btn-bg
+    );
+    cursor: pointer;
+}
+.create-task-btn:hover{
+    background-color: #066bd0;
+}
+
+/* inbox-task-container */
+.inbox-task-container{
+    height: 73%;
+    margin-top: 20px;
+    border-radius: var(--x-size);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: var(--x-size) var(--l-size);
+    overflow-y: auto;
+}
+
+.task{
+    background-color: rgb(231, 232, 231);
+    padding: var(--l-size) var(--x-size);
+    display: flex;
+    align-items: center;
+    border-radius: var(--x-size);
+    cursor: grab;
+    position: relative;
+    gap:10px;
+}
+.task-btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.delete-btn{
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    cursor: pointer;
+    width: 16px;
 }
