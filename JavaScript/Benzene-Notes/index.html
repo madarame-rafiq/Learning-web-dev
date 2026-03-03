@@ -7,7 +7,32 @@
     <title>Benzene Notes</title>
 </head>
 <body>
-    
+    <!-- /* -----------Navbar---------- */ -->
+    <nav>
+        <h2>Benzene Notes</h2>
+        <div class="board-selector-container">
+            <select name="boards" id="boards" class="board-selector">
+                <option value="New Board">New Board</option>
+                <option value="New dsd">safBoard</option>
+                <option value="New saafsrd">fefe</option>
+            </select>
+            <button class="create-btn" id="boardCreateBtn">Create Board</button>
+        </div>
+        <div class="nav-right">
+            <button class="light-mode-btn" id="themeBtn"><img width="28" src="./assets/brightness.png" alt="Theme toogle button"></button>
+            <a href="https://github.com/madarame-rafiq" target="_blank"><img src="./assets/github.png" alt="Github icon" width="30"></a>
+        </div>
+    </nav>
+
+
+<!-- /* ------new board maker------ */ -->
+ <div class="new-board-maker-container">
+     <div class="new-board-maker">
+         <input type="text" placeholder="Enter board name" class="input-board-name">
+         <button class="create-btn">Create</button>
+        </div>
+        <div class="transparent-bg"></div>
+ </div>
 
     <script src="script.js"></script>
 </body>
