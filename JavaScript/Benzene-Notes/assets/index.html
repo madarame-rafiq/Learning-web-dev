@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benzene Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-light: rgb(232, 241, 244);
+            --create-btn-bg: rgb(0, 157, 255);
+            --inbox-board-bg: #bab9b96a;
+            --s-size: 5px;
+            --x-size: 10px;
+            --l-size: 15px;
+            --xl-size: 20px;
+            --xxl-size: 25px;
+            --xxxl-size: 30px;
+        }
+
+        html, body {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            position: relative;
+        }
+
+        /* -----------Navbar---------- */
+        nav {
+            display: flex;
+            width: 100vw;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--l-size) var(--l-size);
+        }
+
+        .board-selector-container {
+            width: 47%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .board-selector {
+            width: 83%;
+            padding: 8px;
+            font-size: 16px;
+            border: 2px solid #066bd0;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            color: #333;
+            outline: none;
+        }
+
+        option {
+            padding: var(--l-size) var(--l-size);
+            background-color: rgb(244, 240, 240);
+        }
+
+        .create-btn {
+            padding: var(--x-size) var(--x-size);
+            background-color: var(--create-btn-bg);
+            border-radius: var(--l-size);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: white;
+            font-family: monospace;
+            font-weight: 400;
+        }
+
+        .create-btn:hover {
+            border: solid black 1px;
+        }
+
+        .nav-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .light-mode-btn {
+            border: none;
+            border-radius: var(--s-size);
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        /* ------new board maker------ */
+        .new-board-maker-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .transparent-bg {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.56);
+            position: absolute;
+            z-index: 1;
+        }
+
+        .new-board-maker {
+            padding: var(--xxl-size) var(--xxl-size);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: white;
+            border-radius: var(--l-size);
+        }
+
+        .input-board-name {
+            outline: none;
+            border: solid 2px rgb(0, 115, 255);
+            padding: var(--l-size) var(--x-size);
+            border-radius: var(--x-size);
+        }
+
+        .show-new-board-maker {
+            display: flex;
+        }
+
+        /* ------main----- */
+        main {
+            padding: var(--xxl-size) var(--xxl-size);
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            height: calc(100vh - 60px);
+        }
+
+        /* ------inbox------ */
+        .inbox {
+            background-color: var(--inbox-board-bg);
+            height: 100%;
+            width: 25%;
+            padding: var(--x-size) var(--x-size);
+            border-radius: var(--x-size);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .heading {
+            border-bottom: solid 2px black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--x-size);
+            padding-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .edit-btn {
+            background-color: transparent;
+            border: none;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            padding: var(--x-size) var(--l-size);
+        }
+
+        /* ------create new task------ */
+        .new-task {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: rgb(196, 198, 196);
+            border-radius: var(--x-size);
+            justify-content: center;
+            gap: 5px;
+            padding: var(--x-size) var(--x-size);
+            margin-top: 12px;
+            flex-shrink: 0;
+        }
+
+        .input-new-task {
+            width: 80%;
+            height: 31px;
+            outline: none;
+            border: none;
+            border-radius: var(--s-size);
+            padding: var(--x-size) var(--s-size);
+        }
+
+        .create-task-btn {
+            color: white;
+            font-size: 1rem;
+            padding: var(--s-size) var(--l-size);
+            border: none;
+            border-radius: 3px;
+            background-color: var(--create-btn-bg);
+            cursor: pointer;
+        }
+
+        .create-task-btn:hover {
+            background-color: #066bd0;
+        }
+
+        /* inbox task container */
+        .inbox-task-container {
+            flex: 1;
+            margin-top: 12px;
+            border-radius: var(--x-size);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: var(--x-size) var(--l-size);
+            overflow-y: auto;
+        }
+
+        /* shared task style (used in both inbox and goals) */
+        .task {
+            background-color: rgb(231, 232, 231);
+            padding: var(--l-size) var(--x-size);
+            display: flex;
+            align-items: center;
+            border-radius: var(--x-size);
+            cursor: grab;
+            position: relative;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .task-btn {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .delete-btn {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            cursor: pointer;
+            width: 16px;
+        }
+
+        /* ------board------ */
+        .board {
+            background-color: var(--inbox-board-bg);
+            height: 100%;
+            width: 75%;
+            border-radius: var(--x-size);
+            padding: var(--x-size) var(--x-size);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* scrollable goals row */
+        .GOALS {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex: 1;
+            padding-bottom: 8px;
+            margin-top: 10px;
+            align-items: flex-start;
+        }
+
+        /* individual goal column */
+        .goal-container {
+            min-width: 220px;
+            width: 220px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 10px;
+            padding: var(--x-size) var(--x-size);
+            flex-shrink: 0;
+        }
+
+        /* tasks inside a goal — scrollable vertically */
+        .goal-task-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* goal task — same style as .task */
+        .goal {
+            background-color: rgb(231, 232, 231);
+            padding: var(--l-size) var(--x-size);
+            display: flex;
+            align-items: center;
+            border-radius: var(--x-size);
+            cursor: grab;
+            position: relative;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* "Add task" input inside each goal */
+        .goal-new-task {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .goal-new-task .input-new-task {
+            width: 75%;
+            height: 28px;
+            font-size: 0.85rem;
+        }
+
+        .goal-new-task .create-task-btn {
+            padding: 4px 10px;
+            font-size: 0.85rem;
+        }
+
+        /* "Add new goal" column at the end of .GOALS */
+        .new-goal-column {
+            min-width: 200px;
+            width: 200px;
+            height: fit-content;
+            background-color: white;
+            border-radius: 10px;
+            padding: var(--x-size) var(--x-size);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-top: 0;
+            align-self: flex-start;
+        }
+
+        .new-goal-column p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #444;
+            padding-bottom: 6px;
+            border-bottom: 2px solid black;
+        }
+
+        .new-goal-column .input-board-name {
+            width: 100%;
+            font-size: 0.85rem;
+            padding: 8px var(--x-size);
+        }
+
+        .new-goal-column .create-btn {
+            font-size: 0.85rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h2>Benzene Notes</h2>
+        <div class="board-selector-container">
+            <select name="boards" id="boards" class="board-selector">
+                <option value="New Board">New Board</option>
+                <option value="New dsd">safBoard</option>
+                <option value="New saafsrd">fefe</option>
+            </select>
+            <button class="create-btn" id="boardCreateBtn">Create Board</button>
+        </div>
+        <div class="nav-right">
+            <button class="light-mode-btn" id="themeBtn">
+                <img width="28" src="./assets/brightness.png" alt="Theme toggle button">
+            </button>
+            <a href="https://github.com/madarame-rafiq" target="_blank">
+                <img src="./assets/github.png" alt="Github icon" width="30">
+            </a>
+        </div>
+    </nav>
+
+    <!-- New Board Modal -->
+    <div class="new-board-maker-container" id="boardModal">
+        <div class="new-board-maker">
+            <input type="text" placeholder="Enter board name" class="input-board-name">
+            <button class="create-btn">Create</button>
+        </div>
+        <div class="transparent-bg"></div>
+    </div>
+
+    <main>
+
+        <!-- Inbox -->
+        <div class="inbox">
+            <div class="heading">Inbox</div>
+
+            <div class="new-task">
+                <input type="text" placeholder="Enter new task" class="input-new-task">
+                <button class="create-task-btn">+</button>
+            </div>
+
+            <div class="inbox-task-container">
+                <div class="task">
+                    <button class="task-btn">
+                        <img width="18" src="./assets/unchecked.png" alt="unchecked">
+                    </button>
+                    <h5>Learn JavaScript</h5>
+                    <button class="task-btn">
+                        <img class="delete-btn" src="./assets/trash.png" alt="Delete task">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Board -->
+        <div class="board">
+            <div class="heading">
+                <span id="boardName">Board</span>
+                <button class="edit-btn">
+                    <img width="20" src="./assets/edit-text.png" alt="edit button">
+                </button>
+            </div>
+
+            <!-- Goals row — scrolls horizontally -->
+            <div class="GOALS">
+
+                <!-- Goal Column -->
+                <div class="goal-container">
+                    <div class="heading">
+                        <span id="goalName">Today</span>
+                    </div>
+
+                    <!-- Tasks inside this goal — scrolls vertically -->
+                    <div class="goal-task-list">
+                        <div class="goal">
+                            <button class="task-btn">
+                                <img width="18" src="./assets/unchecked.png" alt="unchecked">
+                            </button>
+                            <h5>Learn JavaScript</h5>
+                            <button class="task-btn">
+                                <img class="delete-btn" src="./assets/trash.png" alt="Delete task">
+                            </button>
+                        </div>
+
+                        <div class="goal">
+                            <button class="task-btn">
+                                <img width="18" src="./assets/unchecked.png" alt="unchecked">
+                            </button>
+                            <h5>Practice CSS</h5>
+                            <button class="task-btn">
+                                <img class="delete-btn" src="./assets/trash.png" alt="Delete task">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add task input at bottom of goal -->
+                    <div class="goal-new-task">
+                        <input type="text" placeholder="New task..." class="input-new-task">
+                        <button class="create-task-btn">+</button>
+                    </div>
+                </div>
+
+                <!-- Another Goal Column (example) -->
+                <div class="goal-container">
+                    <div class="heading">
+                        <span id="goalName">This Week</span>
+                    </div>
+
+                    <div class="goal-task-list">
+                        <div class="goal">
+                            <button class="task-btn">
+                                <img width="18" src="./assets/unchecked.png" alt="unchecked">
+                            </button>
+                            <h5>Build a project</h5>
+                            <button class="task-btn">
+                                <img class="delete-btn" src="./assets/trash.png" alt="Delete task">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="goal-new-task">
+                        <input type="text" placeholder="New task..." class="input-new-task">
+                        <button class="create-task-btn">+</button>
+                    </div>
+                </div>
+
+                <!-- Add New Goal column — always at the end -->
+                <div class="new-goal-column">
+                    <p>+ New Goal</p>
+                    <input type="text" placeholder="Goal name..." class="input-board-name">
+                    <button class="create-btn">Create</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
