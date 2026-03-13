@@ -6,354 +6,291 @@
 
 :root{
     /* Background Color */
-    --bg-light: rgb(232, 241, 244);
-    --create-btn-bg: rgb(0, 157, 255);
-    --inbox-board-bg: #bab9b96a;
+    --light-bg: #FAFAFA;
+    --create-btn-bg: #484B6A;
+    --inboxAndGoals-bg-light: #a7a8b9d3;
 
-
-    /* Color */
-    --light-blue: ;
 
 
     /* Space */
-    --s-size: 5px;
-    --x-size: 10px;
-    --l-size: 15px;
-    --xl-size: 20px;
-    --xxl-size: 25px;
-    --xxxl-size: 30px;
+    --s-space: 5px;
+    --x-space: 10px;
+    --l-space: 15px;
+    --xl-space: 20px;
+    --xxl-space: 25px;
+    --xxxl-space: 30px;
 }
 
-html,body{
+html,
+body{
     height: 100vh;
     width: 100vw;
 }
+
 body{
-    background-color: var(--bg-light);
+    background-color: var(--light-bg);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: relative;
 }
 
 
-
-/* -----------Navbar---------- */
+/* Navbar -----> dont need to be changed */
 nav{
+    /* background-color: red; */
     display: flex;
-    width: 100vw;
     justify-content: space-between;
+    padding: var(--s-space) var(--l-space);
     align-items: center;
-    padding: var(--l-size) var(--l-size);
+    width: 100%;
 }
 
-.board-selector-container{
-    width: 47%;
+#navHeading{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.select-container{
+    width: 50%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
+    /* background-color: green; */
 }
-
-.board-selector{
-    width: 83%;
-    padding: 8px;
-    font-size: 16px;
-    border: 2px solid #066bd0;
-    border-radius: 6px;
-    background-color: #f9f9f9;
-    color: #333;
+.select-container > #myBoards{
+    width: 80%;
     outline: none;
-}
-
-option {
-    padding: var(--l-size) var(--l-size);
-    background-color: rgb(244, 240, 240);
-}
-
-.create-btn{
-    padding: var(--x-size) var(--x-size);
-    background-color: var(--create-btn-bg);
-    border-radius: var(--l-size);
+    border-radius: var(--x-space);
+    padding: var(--x-space) var(--l-space);
     cursor: pointer;
-    border: none;
-    outline: none;
-    color: white;
-    font-family: monospace;
-    font-weight: 400;
 }
-.create-btn:hover{
-    border: solid black 1px;
+.select-container > #createBoard{
+    
+    font-size: 20px;
 }
-
 
 .nav-right{
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 13px;
 }
-.light-mode-btn{
-    border: none;
-    border-radius: var(--s-size);
-    background-color: transparent;
+.nav-right > #toggleThemeBtn{
     cursor: pointer;
 }
+.nav-right >  #toggleThemeBtn:hover{
+    background-color: rgba(0, 0, 0, 0.048);
+}
+.nav-right >  #githubLogo:hover{
+    background-color: rgba(0, 0, 0, 0.048);
+}
 
 
-
-/* ------new board maker------ */
-.new-board-maker-container{
-    position: fixed;
-    top: 0;
-    left: 0;
-   display: none;
-   justify-content: center;
-   align-items: center;
-    height: 100%;
-    width: 100%;
-    z-index: 999;
+/* creat btn style */
+.create-btn{
+    border: none;
+    background-color: var(--create-btn-bg);
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: var(--x-space);
+    padding: var(--s-space) var(--x-space);
 }
-.transparent-bg{
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.56);
-    position: absolute;
-    z-index: 1;
-}
-.new-board-maker{
-    padding: var(--xxl-size) var(--xxl-size);
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: white;
-    border-radius: var(--l-size);
-}
-.input-board-name{
-    outline: none;
-    border: solid 2px rgb(0, 115, 255);
-    padding: var(--l-size) var(--x-size);
-    border-radius: var(--x-size);
-}
-.show-new-board-maker{
-    display: flex;
+.create-btn:hover{
+    opacity: 0.9;
+    
 }
 
 
 
-
-/* ------main----- */
+/* -----Boards----- */
 main{
-    /* background-color: rgb(98, 0, 0); */
-    padding: var(--xxl-size) var(--xxl-size);
     display: flex;
-    width: 100%;
+    height: 85%;
+    width: 95%;
+    margin-top: 35px;
     gap: 20px;
-    height: 91.2%;
+    border-radius: var(--l-space);
 }
-
 .inbox{
-    background-color: var(--inbox-board-bg);
-    height: 100%;
-    width: 25%;    
-    padding: var(--x-size) var(--x-size);
-    border-radius: var(--x-size);
+    background-color: var(--inboxAndGoals-bg-light);
+    width: calc(30% - 10px);
+    border-radius: var(--l-space);
+    padding: var(--x-space) var(--xl-space);
 }
-
 .board{
-    background-color: var(--inbox-board-bg);
-    height: 100%;
-    width: 75%;
-    border-radius: var(--x-size);
-    padding: var(--x-size) var(--x-size);
-overflow-y: hidden;
-
+    background-color: var(--inboxAndGoals-bg-light);
+    width: calc(70% - 10px);
+    border-radius: var(--l-space);
+    padding: var(--x-space) var(--xl-space);
 }
 
-.heading{
+.top{  /* The heading of the inbox and board */
     border-bottom: solid 2px black;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 var(--x-size);
 }
-.edit-btn{
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    cursor: pointer;
-    outline: none;
-    padding: var(--x-size) var(--l-size);
-    /* width: 10px; */
+.top > #deleteBoardBtn{
+    font-size: 10px;
 }
 
 
-
-
-/* ------create new task------ */
-.new-task{
-    width: 100%;
+/* -----create task----- */
+.create-task{
+    background-color: rgb(231, 235, 235);
+    border-radius: var(--x-space);
+    padding: var(--s-space) var(--x-space);
+    font-size: 1.4rem;
+    margin-top: 30px;
+}
+.newtask-container{
+    /* background-color: crimson; */
     display: flex;
     align-items: center;
-    background-color: rgb(196, 198, 196);
-    border-radius: var(--x-size);
-    justify-content: center;
-    gap: 5px;
-    padding: var(--xxl-size) var(--x-size);
-    margin-top: 20px;
+    justify-content: space-between;
+    margin-top: 10px;
 }
-.input-new-task{
-    width: 80%;
-    height: 31px;
+.newtask-container > #newTaskInput{
+    width: 90%;
+    border: none;
+    background-color: #D2D3DB;
     outline: none;
-    border: none;
-    border-radius: var(--s-size);
-    padding: var(--x-size) var(--s-size);
+    border-radius: var(--l-space);
+    padding: var(--x-space) var(--l-space);
 }
-.create-task-btn{
-    color: white;
-    font-size: 1rem;
-    padding: var(--s-size) var(--l-size);
-    border: none;
-    border-radius: 3px;
-    background-color: var(--create-btn-bg
-    );
-    cursor: pointer;
-}
-.create-task-btn:hover{
-    background-color: #066bd0;
+.newtask-container > #createTask{
+    padding: 12px 17px;
+    border-radius: var(--l-space);
 }
 
-/* inbox-task-container */
-.inbox-task-container{
-    height: 73%;
-    margin-top: 20px;
-    border-radius: var(--x-size);
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: var(--x-size) var(--l-size);
+
+/* -----task Container---- */
+.task-container{
+    height: 70%;
+    background-color: rgb(231, 235, 235);
+    margin-top: 30px;
+    border-radius: var(--l-space);
+    padding: var(--x-space) var(--l-space);
     overflow-y: auto;
 }
-
 .task{
-    background-color: rgb(231, 232, 231);
-    padding: var(--l-size) var(--x-size);
+    padding: var(--x-space) var(--l-space);
+    background-color: #D2D3DB;
+    border-radius: var(--l-space);
+    margin-bottom: 10px;
+
     display: flex;
     align-items: center;
-    border-radius: var(--x-size);
     cursor: grab;
-    position: relative;
-    gap:10px;
+    margin-top: 6px;
 }
-.task-btn{
-    border: none;
-    outline: none;
-    background-color: transparent;
+.task > .deleteTask{
+    cursor: pointer;
+    margin-left: auto;
+}
+.task > .checkbox{
     cursor: pointer;
 }
-.delete-btn{
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    cursor: pointer;
-    width: 16px;
-}
 
 
 
-
-
-/* ------board------ */
-
+/* //board --> goals */
 .goal-container{
-    min-width: 25%;
-    display: flex;
-    height: 95%;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 10px;
-    margin-top: 12px;
-    /* overflow-y: auto; */
-    padding: var(--s-size) var(--x-size);
-}
-/* .goal-container{
-    height: 73%;
+    height: 90%;
+    background-color: #D2D3DB;
+    width: 100%;
     margin-top: 20px;
-    border-radius: var(--x-size);
-    background-color: white;
+    border-radius: var(--l-space);
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: var(--x-size) var(--l-size);
-  
-} */
-
+    align-items: center;
+    gap: 15px;
+    padding: var(--x-space) var(--x-space);
+    overflow-x:scroll;
+}
 .goal{
-    background-color: rgb(231, 232, 231);
-    padding: var(--l-size) var(--x-size);
+    min-width: 35%;
+    height: 100%;
+    background-color: rgb(231, 235, 235);
+    border-radius: var(--l-space);
+    padding: var(--x-space) var(--x-space);
+    overflow-y: auto;
+}
+#deleteGoalBtn{
+    font-size: 10px;
+}
+
+
+/* --create goal-- */
+.create-goal{
+    background-color: rgb(231, 235, 235);
+    border-radius: var(--x-space);
+    padding: var(--s-space) var(--x-space);
+    font-size: 1.4rem;
+    margin-top: 30px;
+    min-width: 40%;
+}
+.newgoal-container{
+    /* background-color: crimson; */
     display: flex;
     align-items: center;
-    border-radius: var(--x-size);
-    cursor: grab;
-    position: relative;
+    justify-content: space-between;
     margin-top: 10px;
-    gap:10px;
 }
-.task-btn{
+.newgoal-container > #newGoalInput, #newBoardInput{
+    width: 90%;
     border: none;
+    background-color: #D2D3DB;
     outline: none;
-    background-color: transparent;
-    cursor: pointer;
+    border-radius: var(--l-space);
+    padding: var(--x-space) var(--l-space);
 }
-.delete-btn{
+.newgoal-container > #createGoal{
+    padding: 12px 17px;
+    border-radius: var(--l-space);
+}
+
+
+
+
+
+/* ///Create New Board */
+.createNewBoard{
     position: absolute;
-    bottom: 4px;
-    right: 4px;
-    cursor: pointer;
-    width: 16px;
-}
-
-
-/* -----*********--- */
-.GOALS{
+    
+    padding: var(--xxxl-space) var(--xxxl-space);
+    background-color: var(--light-bg);
+    border-radius: var(--l-space);
     display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    height: 95%;
-    /* background-color: green; */
-}
-
-/* ---create new goal----- */
-.new-goal{
-    width: 25%;
-    display: flex;
-    height: 16%;
-    align-items: center;
-    background-color: rgb(196, 198, 196);
-    border-radius: var(--x-size);
     justify-content: center;
-    gap: 5px;
-    padding: var(--xxl-size) var(--x-size);
-    margin-top: 20px;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 999;
+    background-color: rgba(174, 169, 169, 0.921);
 }
-.input-new-goal{
-    width: 80%;
-    height: 31px;
-    outline: none;
-    border: none;
-    border-radius: var(--s-size);
-    padding: var(--x-size) var(--s-size);
+.newboardContainer{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
-.create-task-btn{
-    color: white;
-    font-size: 1rem;
-    padding: var(--s-size) var(--l-size);
-    border: none;
-    border-radius: 3px;
-    background-color: var(--create-btn-bg
-    );
-    cursor: pointer;
+.bg{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(16, 16, 16, 0.459);
+    z-index: 99;
 }
-.create-task-btn:hover{
-    background-color: #066bd0;
+#newBoardInput{
+    width: 300px;
+    background-color:aliceblue;
+}
+
+
+.hover{
+    transform: scale(1.02);
+    border: dotted 2px black;
 }

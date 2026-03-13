@@ -7,88 +7,84 @@
     <title>Benzene Notes</title>
 </head>
 <body>
-    <!-- /* -----------Navbar---------- */ -->
+    <!-- //Navbar -->
     <nav>
-        <h2>Benzene Notes</h2>
-        <div class="board-selector-container">
-            <select name="boards" id="boards" class="board-selector">
-                <option value="New Board">New Board</option>
-                <option value="New dsd">safBoard</option>
-                <option value="New saafsrd">fefe</option>
-            </select>
-            <button class="create-btn" id="boardCreateBtn">Create Board</button>
+        <h3 id="navHeading">Benzene Notes</h3>
+
+        <div class="select-container">
+            <select id="myBoards"></select>
+
+            <button class="create-btn" id="createBoard" onclick="newBoardOn()">Create Board</button>
         </div>
+
         <div class="nav-right">
-            <button class="light-mode-btn" id="themeBtn"><img width="28" src="./assets/brightness.png" alt="Theme toogle button"></button>
-            <a href="https://github.com/madarame-rafiq" target="_blank"><img src="./assets/github.png" alt="Github icon" width="30"></a>
+            <img src="./assets/brightness.png" alt="Theme toggle" width="24" id="toggleThemeBtn">
+            <a href="https://github.com/madarame-rafiq/" target="_blank" id="githubLogo"><img src="./assets/github.png" alt="Github logo" width="24"></a>
         </div>
     </nav>
 
+    <!-- //Contains inbox and board -->
+    <main>
 
-<!-- /* ------new board maker------ */ -->
- <div class="new-board-maker-container">
-     <div class="new-board-maker">
-         <input type="text" placeholder="Enter board name" class="input-board-name">
-         <button class="create-btn">Create</button>
-        </div>
-        <div class="transparent-bg"></div>
- </div>
-
-
-
- <main>
-    <div class="inbox">
-        <div class="heading" style="font-size: 1.3rem; padding-bottom: 16px;">Inbox</div>
-
-        <div class="new-task">
-            <input type="text" placeholder="Enter new task" class="input-new-task" >
-            <button class="create-task-btn">+</button>
-        </div>
-
-        <div class="inbox-task-container">
-            <div class="task">
-                <img class="task-btn" width="18" src="./assets/unchecked.png" alt="inchecked">
-            
-                <h5>Learn javascript</h5>
-            
-                <button class="task-btn"><img class="delete-btn" src="./assets/trash.png"  alt="Delete task"></button>
+        <!-- //Inbox -->
+        <div class="inbox">
+            <!-- //heading -->
+            <div class="top">
+                <h3>Inbox</h3>
             </div>
             
-        </div>
-    </div>
-    
-
-    <div class="board">
-        <div class="heading"><span id="boardName">Board</span>
-            <button class="edit-btn"><img width="20" src="./assets/edit-text.png" alt="edit button"></button>
-        </div>
-        
-        <div class="GOALS">
-            <div class="goal-container">
-                <div class="heading"><span id="goalName">Today</span></div>
-    
-                <div class="goal">
-                    <img class="task-btn" width="18" src="./assets/unchecked.png" alt="inchecked">
-                
-                    <h5>Learn javascript</h5>
-                
-                    <button class="task-btn"><img class="delete-btn" src="./assets/trash.png"  alt="Delete task"></button>
+            <!-- //Creatting new task -->
+            <div class="create-task">
+                <h4>create new task</h4>
+                <div class="newtask-container">
+                    <input type="text" id="newTaskInput" placeholder="Enter task">
+                    <button class="create-btn" id="createTask">+</button>
                 </div>
             </div>
-
-
-
-
-
-             <div class="new-goal">
-                <input type="text" placeholder="Enter new goal" class="input-new-goal" >
-                <button class="create-task-btn" id="createGoal">+</button>
+            <!-- //Will contain all the tasks in inbox -->
+            <div class="task-container">
+                
             </div>
+            
+        </div>
+        
+        <!-- //Board -->
+        <div class="board">
+            <!-- //heading -->
+             <div class="top">
+                 <h3 id="boardHeading"></h3>
+                 <button id="deleteBoardBtn" class="create-btn">Delete Board</button>
+             </div>
+
+             <!-- //contains all the goals -->
+              <div class="goal-container">
+                
+            
+                <!-- //Create new goal -->
+                    <!-- <div class="create-goal">
+                        <h4>create new goal</h4>
+                        <div class="newgoal-container">
+                            <input type="text" id="newGoalInput" placeholder="Enter goal">
+                            <button class="create-btn" id="createGoal">+</button>
+                        </div>
+                    </div> -->
+              </div>
+
+         </div>
+
+    </main>
+
+
+    <div class="newboardContainer">
+        <div class="bg" onclick="newBoardOff()"></div>
+        <div class="createNewBoard">
+            <input type="text" placeholder="Enter board name" id="newBoardInput">
+            <button class="create-btn" id="newBoard" onclick="createBoard()">Create</button>
         </div>
 
-
     </div>
- </main>
+
+
     <script src="script.js"></script>
 </body>
 </html>
